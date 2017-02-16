@@ -1,5 +1,6 @@
 import numpy as np
 import json
+import pyperclip
 
 #Definitions
 
@@ -12,7 +13,7 @@ def BinderQuery(variants):
     variants = map(lambda x: "'" + x + "'", variants)
     termstring = "name contains (" + ", ".join(variants) + ")"
     print termstring
-
+    return termstring
 
 def edit1(words, distance = 1):
     """
@@ -132,12 +133,16 @@ while running:
     print "\n"
     words = raw_input("Input words seperated by commas: ")
     #clean input words
-    words = words.lower()
-    words = map(lambda x: x.strip(), words.split(","))
+    all_words = words.lower().split("|")
 
-    print "\n"
-    distance = raw_input("Typo distance (default: 1, set 0 for only duplicated letters without insertions or replacements):")
+    edit_words = map(lambda x: x.strip(), all_words[0].split(","))
 
+    if "|" in words:
+        extra_words = map(lambda x: x.strip(), all_words[1].split(","))
+    else:
+        extra_words = []
+
+    """
     distance = float(distance)
     su_distance = distance * 0.2
 
@@ -145,28 +150,13 @@ while running:
     euc_sim_dict = below_distance(euc, distance, chars)
     hum_sim_dict = below_distance(hmn, su_distance, alp_chars)
     ocr_sim_dict = below_distance(ocr, su_distance, alp_chars)
+    """
 
     print "\nWildcards:"
     print "---"
 
-    BinderQuery(edit1(words, distance = distance))
-
-    print "\n"
-    print "Keyboard Distance:"
-    print "---"
-    BinderQuery(WghtdEdit1(words, euc_sim_dict))
-
-    print "\n"
-    print "Human Error-Frequencies:"
-    print "---"
-    BinderQuery(WghtdEdit1(words, hum_sim_dict))
-
-    print "\n"
-    print "OCR Error-Frequencies:"
-    print "---"
-    BinderQuery(WghtdEdit1(words, ocr_sim_dict))
-
-
+    output = BinderQuery(edit1(edit_words) + extra_words)
+    pyperclip.copy(output)
 
 quit()
 
