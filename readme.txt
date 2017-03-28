@@ -29,22 +29,18 @@ The script makes four types of edits to the input word:
 
   4. Replacements      "yogurt" ->  "vogurt"
 
-
-Some typos are more likely than others. The "typo distance" parameter influences the behavior of insertions and replacements. When set to zero replacements do not occur and insertions only include neighoring characters.
-
-
 FuzzyQuery generates potential errors based on four schemes:
 
   1. Wildcards
     - Not affected by "typo distance" because wildcard insertions and replacements include all characters
 
-  2. Keyboard Distance
+  2. Keyboard Distance (DEPRECATED IN version 1.2)
     - Neighboring keys have a lower "typo distance" than more distant keys
 
-  3. Human Error-Frequencies
+  3. Human Error-Frequencies (DEPRECATED IN version 1.2)
     - Common errors made by mech-turk transcribers are favored over rare errors (based on David Su's data).
 
-  4. OCR Error-Frequencies
+  4. OCR Error-Frequencies (DEPRECATED IN version 1.2)
     - Common errors made by OCR are favored over rare errors (based on David Su's data).
 
 
