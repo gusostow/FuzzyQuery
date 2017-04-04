@@ -1,7 +1,7 @@
 FuzzyQuery
 -------------
 
-FuzzyQuery generates binder queries designed to catch typos.
+FuzzyQuery generates binder queries that catch typos!
 
 Requirements:
 - Python 2.7 (download here: https://www.python.org/downloads/release/python-2713/)
