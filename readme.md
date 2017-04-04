@@ -21,11 +21,19 @@ Usage
 Input a list of words seperated by commas to generate a Binder "name contains" query that will catch typos within a Levenshtein distance of 1.
   
   **Input:**
-         `comb, hair`
+         `sprite, pepsi`
 
   **Returns:** 
-          name contains ('hiar', 'cmob', 'hair', 'hai*r', 'ha*r', 'hai', 'h*ir', 'h*air', '*hair', 'cobm', 'c*omb', '*omb', 'omb', 'hir', 'hai*', 'c*mb', 'co*b', 'ocmb', 'comb', 'har', 'co*mb', 'ha*ir', 'cmb', 'ahir', 'air', 'cob', 'com')
+          *name contains ('srite', 'p*psi', 'sp*ite', 'srpite', 'ppsi', 'pe*psi', 'spr*te', 'pep*i', 'pepis', 'pepi', 'spri*te', 'spite', 'epsi', 'pe*si', 'spr*ite', 'sprte', 'pespi', 'peps', 'sp*rite', 'sprite', 's*rite', 'spirte', 'pepsi', 'spri*e', 'ppesi', 'sprtie', '*epsi', 'peps*i', 'sprit', 'pesi', 'prite', 'sprie', 'psrite', 'pep*si')*
 
+
+Optionally, seperate list of words with a "|". Words to the left of "|" are edited within an edit distance; words on the right are appended to the query untouched. 
+
+  **Input:**
+         `sprite, pepsi| coke, cke, cola`
+
+  **Returns:**
+          *name contains ('srite', 'p*psi', 'sp*ite', 'srpite', 'ppsi', 'pe*psi', 'spr*te', 'pep*i', 'pepis', 'pepi', 'spri*te', 'spite', 'epsi', 'pe*si', 'spr*ite', 'sprte', 'pespi', 'peps', 'sp*rite', 'sprite', 's*rite', 'spirte', 'pepsi', 'spri*e', 'ppesi', 'sprtie', '*epsi', 'peps*i', 'sprit', 'pesi', 'prite', 'sprie', 'psrite', 'pep*si', 'coke', 'cke', 'cola')*
 
 Info
 -------------
