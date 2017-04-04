@@ -11,9 +11,9 @@ Instructions
 -------------
   1. Unzip directory to desktop
   2. Open terminal
-  3. type "pip install numpy pandas pyperclip"
-  4. type "cd desktop/FuzzyQuery" and press enter
-  5. type "python fuzzyquery.py" and press enter
+  3. type `pip install numpy pandas pyperclip`
+  4. type `cd desktop/FuzzyQuery" and press enter`
+  5. type `python fuzzyquery.py" and press enter`
 
 
 Usage
@@ -21,8 +21,11 @@ Usage
 Input a list of words seperated by commas to generate a Binder "name contains" query that will catch typos within a Levenshtein distance of 1.
 
 **Example 1:** 
-  Input: comb, hair
-  Returns: name contains ('hiar', 'cmob', 'hair', 'hai*r', 'ha*r', 'hai', 'h*ir', 'h*air', '*hair', 'cobm', 'c*omb', '*omb', 'omb', 'hir', 'hai*', 'c*mb', 'co*b', 'ocmb', 'comb', 'har', 'co*mb', 'ha*ir', 'cmb', 'ahir', 'air', 'cob', 'com')
+  Input:
+         `comb, hair`
+
+  Returns: 
+          name contains ('hiar', 'cmob', 'hair', 'hai*r', 'ha*r', 'hai', 'h*ir', 'h*air', '*hair', 'cobm', 'c*omb', '*omb', 'omb', 'hir', 'hai*', 'c*mb', 'co*b', 'ocmb', 'comb', 'har', 'co*mb', 'ha*ir', 'cmb', 'ahir', 'air', 'cob', 'com')
 
 
 Info
