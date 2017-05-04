@@ -15,7 +15,7 @@ def BinderQuery(variants):
     print termstring
     return termstring
 
-def edit1(words, distance = 1):
+def edit1(words):
     """
     Returns all words within one edit of input string. "*" denotes
     a wildcard character
@@ -27,29 +27,29 @@ def edit1(words, distance = 1):
         # tracks and adds whitespace char at the end of words
         if word[-1] == " ":
             trailing = (" ")
-            word = word.strip()
+            word = word.rstrip()
         else:
             trailing = ("")
+
+        if word[0] == " ":
+            leading = (" ")
+            word = word.lstrip()
+        else:
+            leading = ("")
 
         letters = "*" # specific Binder 2.0 wildcard char for inserts and replacements
 
         splits = [(word[:i], word[i:]) for i in range(len(word) + 1)]
-        deletes = [L + R[1:] + trailing for L, R in splits if R]
-        transposes = [L + R[1] + R[0] + R[2:] + trailing for L, R in splits if len(R)>1]
-
-        if distance:
-            replaces = [L + c + R[1:] + trailing for L, R in splits if R for c in letters]
-            inserts = [L + c + R + trailing for L, R in splits for c in letters]
-
-        else:
-            replaces = []
-            inserts = [L + c + R + trailing for L, R in splits if R and L for c in L[-1] + R[0]]
+        deletes = [leading + L + R[1:] + trailing for L, R in splits if R]
+        transposes = [leading + L + R[1] + R[0] + R[2:] + trailing for L, R in splits if len(R)>1]
+        replaces = [leading + L + c + R[1:] + trailing for L, R in splits if R for c in letters]
+        inserts = [leading + L + c + R + trailing for L, R in splits for c in letters]
 
         cache += list(set(deletes + transposes + replaces + inserts))
 
     # process and clean up the list of variants
 
-    cache = [i for i in cache if len(i) > 2]
+    cache = [i for i in cache if len(i) > 2 or '*' not in i[0] + i[-1]]
 
     cache_clean = []
 
@@ -75,10 +75,10 @@ while running:
     
     all_words = words.lower().split("|")
 
-    edit_words = map(lambda x: x.lstrip(), all_words[0].split(","))
+    edit_words = all_words[0].split(",")
 
     if "|" in words:
-        extra_words = map(lambda x: x.lstrip(), all_words[1].split(","))
+        extra_words = all_words[1].split(",")
     else:
         extra_words = []
 
