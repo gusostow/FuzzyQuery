@@ -49,7 +49,7 @@ def edit1(words):
 
     # process and clean up the list of variants
 
-    cache = [i for i in cache if len(i) > 2 or '*' not in i[0] + i[-1]]
+    cache = [i for i in cache if (len(i) > 2) and ('*' not in i[0] + i[-1])]
 
     cache_clean = []
 
